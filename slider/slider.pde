@@ -5,6 +5,7 @@ color blue=#26547C;
 color green=#06D6A0;
 
 float sliderX;
+float diameter;
 
 void setup(){
   size(800,800);
@@ -12,14 +13,15 @@ void setup(){
   stroke(pink);
   fill(pink);
   sliderX=400;
+  diameter=10;
 }
 
 void draw() {
   background (grey);
-  
-  line(100,100,700,100);
-  ellipse(sliderX,100,50,50);
-  circle(400,550,sliderX);
+  diameter=map(sliderX,700,100,100,200);
+  line(100,100,100,700);
+  ellipse(100,sliderX,50,50);
+  circle(500,400,diameter);
 }
   void mouseDragged(){
 controlSlider();
@@ -32,7 +34,8 @@ controlSlider();
   
   
   void controlSlider(){
-      if(mouseX>100&&mouseX<700&&mouseY>50&&mouseY<150){
-    sliderX=mouseX;
+      if(mouseX>50&&mouseX<150&&mouseY>100&&mouseY<700){
+    sliderX=mouseY;
     }
   }
+  
