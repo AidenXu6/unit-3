@@ -8,7 +8,7 @@ color grey=#A09F99;
 
 color selectedColor;
 color backgroundcolor;
-float sliderX;
+int sliderX;
 float brushsize;
 
 void setup (){
@@ -82,6 +82,8 @@ void draw (){
  
  stroke(black);
   line(50,200,550,200);
+  tactile(sliderX,200,50);
+  fill(255);
    ellipse(sliderX,200,50,50);
    brushsize=map(sliderX,50,550,1,100);
 }
