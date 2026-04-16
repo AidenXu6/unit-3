@@ -85,6 +85,20 @@ void draw () {
   tactilerect(500, 50);
   fill(blue);
   rect(500, 50, 50, 50);
+  
+  //save button
+  fill(black);
+  rect(850,200,100,50);
+  fill(255);
+  textSize(40);
+  text("save",860,235);
+  
+  //load button
+  fill(black);
+  rect(1000,200,100,50);
+  fill(255);
+  text("load",1010,235);
+  
 
   stroke(black);
   line(50, 200, 550, 200);
@@ -100,7 +114,12 @@ void draw () {
   fill(selectedColor);
   ellipse(100, 950, 50, 50);
   
-
+  stroke(selectedColor);
+  strokeWeight(brushsize);
+  line(200,950,300,950);
+  
+stroke(black);
+strokeWeight(1);
   if (downloadON) {
   fill(red);
 } else {
@@ -205,6 +224,16 @@ void mousePressed () {
     randomON=!randomON;
     downloadON=false;
   }
+  
+  //load button
+  if (mouseX>1000&&mouseX<1100&&mouseY>200&&mouseY<250){
+    selectInput("Pick an image to load","openImage");
+  }
+  
+  //save button
+  if(mouseX>850&&mouseX<950&&mouseY>200&&mouseY<250){
+    selectOutput("Choose a name for your new image file","saveImage");
+  }
 }
 
 void tactilerect(int x, int y) {
@@ -218,5 +247,23 @@ void tactilerect(int x, int y) {
 void controlSlider() {
   if (mouseX>50&&mouseX<550&&mouseY>175&&mouseY<225) {
     sliderX=mouseX;
+  }
+}
+
+void saveImage(File f){
+  if (f != null){
+    PImage canvas = get(0, 300, width, height - 300);
+    canvas.save(f.getAbsolutePath());
+  }
+}
+
+void openImage(File f){
+  if (f!=null){
+    int n=0;
+    while (n<100){
+      PImage pic=loadImage(f.getPath());
+      image(pic,0,300);
+      n=n+1;
+    }
   }
 }
