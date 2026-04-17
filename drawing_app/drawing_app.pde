@@ -5,9 +5,9 @@ color green=#00FF1F;
 color yellow=#FFF300;
 color black=#0D0C01;
 color grey=#A09F99;
-
 color selectedColor;
 color backgroundcolor;
+
 int sliderX;
 float brushsize;
 boolean downloadON;
@@ -27,52 +27,52 @@ void draw () {
   strokeWeight(3);
   stroke(0);
 
-//top toolbar
+  //top toolbar
   fill(#00F4FF);
   rect(0, 0, 1200, 300);
-  
+
   //circle buttons
-  circleButton(red,1100,75,50);
+  circleButton(red, 1100, 75, 50);
 
-  circleButton(grey,1000,75,50);
-  
-  circleButton(black,900,75,50);
-  
-  circleButton(green,800,75,50);
-  
-  circleButton(purple,1100,150,50);
-    
-  circleButton(yellow,1000,150,50);
-  
-  circleButton(blue,900,150,50);
-  
-//rect buttons
-rectButton(red,50,50,50,50);
+  circleButton(grey, 1000, 75, 50);
 
-rectButton(grey,125,50,50,50);
+  circleButton(black, 900, 75, 50);
 
-rectButton(black,200,50,50,50);
- 
-rectButton(green,275,50,50,50);
+  circleButton(green, 800, 75, 50);
 
-rectButton(purple,350,50,50,50);
+  circleButton(purple, 1100, 150, 50);
 
-rectButton(yellow,425,50,50,50);
+  circleButton(yellow, 1000, 150, 50);
 
-rectButton(blue,500,50,50,50);
-  
+  circleButton(blue, 900, 150, 50);
+
+  //rect buttons
+  rectButton(red, 50, 50, 50, 50);
+
+  rectButton(grey, 125, 50, 50, 50);
+
+  rectButton(black, 200, 50, 50, 50);
+
+  rectButton(green, 275, 50, 50, 50);
+
+  rectButton(purple, 350, 50, 50, 50);
+
+  rectButton(yellow, 425, 50, 50, 50);
+
+  rectButton(blue, 500, 50, 50, 50);
+
   //save button
-  rectButton(black,850,200,100,50);
+  rectButton(black, 850, 200, 100, 50);
   fill(255);
   textSize(40);
-  text("save",860,235);
-  
+  text("save", 860, 235);
+
   //load button
-  rectButton(black,1000,200,100,50);
+  rectButton(black, 1000, 200, 100, 50);
   fill(255);
-  text("load",1010,235);
-  
-//slider
+  text("load", 1010, 235);
+
+  //slider
   stroke(black);
   line(50, 200, 550, 200);
   tactile(sliderX, 200, 50);
@@ -80,37 +80,37 @@ rectButton(blue,500,50,50,50);
   ellipse(sliderX, 200, 50, 50);
   brushsize=map(sliderX, 50, 550, 1, 100);
 
-//bottom toolbar
+  //bottom toolbar
   fill(#00F4FF);
   stroke(black);
   rect(0, 900, 1200, 100);
 
-//color indicator
+  //color indicator
   fill(selectedColor);
   ellipse(100, 950, 50, 50);
-  
+
   //thickness indicator
   stroke(selectedColor);
   strokeWeight(brushsize);
-  line(200,950,300,950);
-  
+  line(200, 950, 300, 950);
+
   //stamp buttons
-stroke(black);
-strokeWeight(1);
+  stroke(black);
+  strokeWeight(1);
   if (downloadON) {
-  fill(red);
-} else {
-  fill(grey);
-}
-rect(1100, 900, 100, 100);
+    fill(red);
+  } else {
+    fill(grey);
+  }
+  rect(1100, 900, 100, 100);
   image(download, 1100, 900, 100, 100);
 
   if (randomON) {
-  fill(red);
-} else {
-  fill(grey);
-}
-rect(1000, 900, 100, 100);
+    fill(red);
+  } else {
+    fill(grey);
+  }
+  rect(1000, 900, 100, 100);
   image(random, 1000, 900, 100, 100);
 }
 
@@ -118,19 +118,19 @@ rect(1000, 900, 100, 100);
 
 void mouseDragged() {
   controlSlider();
-  
+
   //squiggly line and stamp code
   if (mouseX>=0&&mouseX<=1200&&mouseY>=300&&mouseY<=900)
 
-  if (downloadON) {
-    image(download, pmouseX, pmouseY, 100, 100);
-  } else if (randomON) {
-    image(random, pmouseX, pmouseY, 100, 100);
-  } else {
-    strokeWeight(brushsize);
-    stroke(selectedColor);
-    line(pmouseX, pmouseY, mouseX, mouseY);
-  }
+    if (downloadON) {
+      image(download, pmouseX, pmouseY, 100, 100);
+    } else if (randomON) {
+      image(random, pmouseX, pmouseY, 100, 100);
+    } else {
+      strokeWeight(brushsize);
+      stroke(selectedColor);
+      line(pmouseX, pmouseY, mouseX, mouseY);
+    }
 }
 
 void tactile (int x, int y, int r) {
@@ -142,44 +142,44 @@ void tactile (int x, int y, int r) {
 }
 
 void mousePressed () {
-  
+
   //circle buttons
   if (dist(1100, 75, mouseX, mouseY)<50) {
     selectedColor=red;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(1000, 75, mouseX, mouseY)<50) {
     selectedColor=grey;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(900, 75, mouseX, mouseY)<50) {
     selectedColor=black;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(800, 75, mouseX, mouseY)<50) {
     selectedColor=green;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(1100, 150, mouseX, mouseY)<50) {
     selectedColor=purple;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(1000, 150, mouseX, mouseY)<50) {
     selectedColor=yellow;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
   if (dist(900, 150, mouseX, mouseY)<50) {
     selectedColor=blue;
     downloadON = false;
-randomON = false;
+    randomON = false;
   }
-  
+
   //rectangle buttons
   if (mouseX>50 &&mouseX<100 && mouseY>50 && mouseY<100) {
     backgroundcolor=red;
@@ -211,7 +211,7 @@ randomON = false;
   }
   controlSlider();
 
-//stamp tool code
+  //stamp tool code
   if (mouseX>1100&&mouseX<1200&&mouseY>900&&mouseY<1000) {
     downloadON=!downloadON;
     randomON=false;
@@ -221,19 +221,19 @@ randomON = false;
     randomON=!randomON;
     downloadON=false;
   }
-  
+
   //load button
-  if (mouseX>1000&&mouseX<1100&&mouseY>200&&mouseY<250){
-    selectInput("Pick an image to load","openImage");
+  if (mouseX>1000&&mouseX<1100&&mouseY>200&&mouseY<250) {
+    selectInput("Pick an image to load", "openImage");
   }
-  
+
   //save button
-  if(mouseX>850&&mouseX<950&&mouseY>200&&mouseY<250){
-    selectOutput("Choose a name for your new image file","saveImage");
+  if (mouseX>850&&mouseX<950&&mouseY>200&&mouseY<250) {
+    selectOutput("Choose a name for your new image file", "saveImage");
   }
 }
 
-void tactilerect(int x, int y,int w,int h) {
+void tactilerect(int x, int y, int w, int h) {
   if (mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h) {
     stroke(255);
   } else {
@@ -247,32 +247,32 @@ void controlSlider() {
   }
 }
 
-void saveImage(File f){
-  if (f != null){
+void saveImage(File f) {
+  if (f != null) {
     PImage canvas = get(0, 300, width, height - 300);
     canvas.save(f.getAbsolutePath());
   }
 }
 
-void openImage(File f){
-  if (f!=null){
+void openImage(File f) {
+  if (f!=null) {
     int n=0;
-    while (n<100){
+    while (n<100) {
       PImage pic=loadImage(f.getPath());
-      image(pic,0,300);
+      image(pic, 0, 300);
       n=n+1;
     }
   }
 }
 
 void circleButton(color c, int x, int y, int r) {
-  tactile(x, y, r);   
-  fill(c);            
-  ellipse(x, y, r, r); 
+  tactile(x, y, r);
+  fill(c);
+  ellipse(x, y, r, r);
 }
 
 void rectButton(color c, int x, int y, int w, int h) {
-  tactilerect(x, y,w,h); 
-  fill(c);           
-  rect(x, y, w, h);  
+  tactilerect(x, y, w, h);
+  fill(c);
+  rect(x, y, w, h);
 }
