@@ -27,79 +27,52 @@ void draw () {
   strokeWeight(3);
   stroke(0);
 
+//top toolbar
   fill(#00F4FF);
   rect(0, 0, 1200, 300);
+  
+  //circle buttons
+  circleButton(red,1100,75,50);
 
-  tactile(1100, 75, 50);
-  fill(red);
-  ellipse(1100, 75, 50, 50);
+  circleButton(grey,1000,75,50);
+  
+  circleButton(black,900,75,50);
+  
+  circleButton(green,800,75,50);
+  
+  circleButton(purple,1100,150,50);
+    
+  circleButton(yellow,1000,150,50);
+  
+  circleButton(blue,900,150,50);
+  
+//rect buttons
+rectButton(red,50,50,50,50);
 
-  tactile(1000, 75, 50);
-  fill(grey);
-  ellipse(1000, 75, 50, 50);
+rectButton(grey,125,50,50,50);
 
-  tactile(900, 75, 50);
-  fill(black);
-  ellipse(900, 75, 50, 50);
+rectButton(black,200,50,50,50);
+ 
+rectButton(green,275,50,50,50);
 
-  tactile(800, 75, 50);
-  fill(green);
-  ellipse(800, 75, 50, 50);
+rectButton(purple,350,50,50,50);
 
-  tactile(1100, 150, 50);
-  fill(purple);
-  ellipse(1100, 150, 50, 50);
+rectButton(yellow,425,50,50,50);
 
-  tactile(1000, 150, 50);
-  fill(yellow);
-  ellipse(1000, 150, 50, 50);
-
-  tactile(900, 150, 50);
-  fill(blue);
-  ellipse(900, 150, 50, 50);
-
-  tactilerect(50, 50);
-  fill(red);
-  rect(50, 50, 50, 50);
-
-  tactilerect(125, 50);
-  fill(grey);
-  rect(125, 50, 50, 50);
-
-  tactilerect(200, 50);
-  fill(black);
-  rect(200, 50, 50, 50);
-
-  tactilerect(275, 50);
-  fill(green);
-  rect(275, 50, 50, 50);
-
-  tactilerect(350, 50);
-  fill(purple);
-  rect(350, 50, 50, 50);
-
-  tactilerect(425, 50);
-  fill(yellow);
-  rect(425, 50, 50, 50);
-
-  tactilerect(500, 50);
-  fill(blue);
-  rect(500, 50, 50, 50);
+rectButton(blue,500,50,50,50);
   
   //save button
-  fill(black);
-  rect(850,200,100,50);
+  rectButton(black,850,200,100,50);
   fill(255);
   textSize(40);
   text("save",860,235);
   
   //load button
-  fill(black);
-  rect(1000,200,100,50);
+  rectButton(black,1000,200,100,50);
   fill(255);
   text("load",1010,235);
   
-
+//slider
   stroke(black);
   line(50, 200, 550, 200);
   tactile(sliderX, 200, 50);
@@ -107,17 +80,21 @@ void draw () {
   ellipse(sliderX, 200, 50, 50);
   brushsize=map(sliderX, 50, 550, 1, 100);
 
+//bottom toolbar
   fill(#00F4FF);
   stroke(black);
   rect(0, 900, 1200, 100);
 
+//color indicator
   fill(selectedColor);
   ellipse(100, 950, 50, 50);
   
+  //thickness indicator
   stroke(selectedColor);
   strokeWeight(brushsize);
   line(200,950,300,950);
   
+  //stamp buttons
 stroke(black);
 strokeWeight(1);
   if (downloadON) {
@@ -142,6 +119,7 @@ rect(1000, 900, 100, 100);
 void mouseDragged() {
   controlSlider();
   
+  //squiggly line and stamp code
   if (mouseX>=0&&mouseX<=1200&&mouseY>=300&&mouseY<=900)
 
   if (downloadON) {
@@ -164,27 +142,45 @@ void tactile (int x, int y, int r) {
 }
 
 void mousePressed () {
+  
+  //circle buttons
   if (dist(1100, 75, mouseX, mouseY)<50) {
     selectedColor=red;
+    downloadON = false;
+randomON = false;
   }
   if (dist(1000, 75, mouseX, mouseY)<50) {
     selectedColor=grey;
+    downloadON = false;
+randomON = false;
   }
   if (dist(900, 75, mouseX, mouseY)<50) {
     selectedColor=black;
+    downloadON = false;
+randomON = false;
   }
   if (dist(800, 75, mouseX, mouseY)<50) {
     selectedColor=green;
+    downloadON = false;
+randomON = false;
   }
   if (dist(1100, 150, mouseX, mouseY)<50) {
     selectedColor=purple;
+    downloadON = false;
+randomON = false;
   }
   if (dist(1000, 150, mouseX, mouseY)<50) {
     selectedColor=yellow;
+    downloadON = false;
+randomON = false;
   }
   if (dist(900, 150, mouseX, mouseY)<50) {
     selectedColor=blue;
+    downloadON = false;
+randomON = false;
   }
+  
+  //rectangle buttons
   if (mouseX>50 &&mouseX<100 && mouseY>50 && mouseY<100) {
     backgroundcolor=red;
     background(backgroundcolor);
@@ -215,6 +211,7 @@ void mousePressed () {
   }
   controlSlider();
 
+//stamp tool code
   if (mouseX>1100&&mouseX<1200&&mouseY>900&&mouseY<1000) {
     downloadON=!downloadON;
     randomON=false;
@@ -236,8 +233,8 @@ void mousePressed () {
   }
 }
 
-void tactilerect(int x, int y) {
-  if (mouseX>x&&mouseX<x+50&&mouseY>y&&mouseY<y+50) {
+void tactilerect(int x, int y,int w,int h) {
+  if (mouseX>x&&mouseX<x+w&&mouseY>y&&mouseY<y+h) {
     stroke(255);
   } else {
     stroke (0);
@@ -266,4 +263,16 @@ void openImage(File f){
       n=n+1;
     }
   }
+}
+
+void circleButton(color c, int x, int y, int r) {
+  tactile(x, y, r);   
+  fill(c);            
+  ellipse(x, y, r, r); 
+}
+
+void rectButton(color c, int x, int y, int w, int h) {
+  tactilerect(x, y,w,h); 
+  fill(c);           
+  rect(x, y, w, h);  
 }
