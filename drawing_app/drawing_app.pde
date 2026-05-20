@@ -249,7 +249,7 @@ void controlSlider() {
 
 void saveImage(File f) {
   if (f != null) {
-    PImage canvas = get(0, 300, width, height - 300);
+    PImage canvas = get(0, 300, width, 600);
     canvas.save(f.getAbsolutePath());
   }
 }
